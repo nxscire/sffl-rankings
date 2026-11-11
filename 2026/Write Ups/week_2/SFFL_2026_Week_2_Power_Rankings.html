@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SFFL 2026 Week 2 Power Rankings</title>
+<style>
+  
+  
+  
+  @page { size: 11in 8.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    width: 11in;
+    height: 8.5in;
+    font-family: "SFFL Sans", Arial, sans-serif;
+    color: #172033;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 11in;
+    height: 8.5in;
+    padding: 0.16in 0.2in 0.14in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.08in;
+  }
+  header {
+    display: grid;
+    grid-template-columns: 2.55in 1fr;
+    align-items: end;
+    border-bottom: 3px solid #101D35;
+    padding-bottom: 0.05in;
+    gap: 0.16in;
+  }
+  .kicker {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #8A6A1E;
+  }
+  h1 {
+    font-size: 20pt;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: #101D35;
+  }
+  .dek-kicker {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #687386;
+    text-transform: uppercase;
+  }
+  .dek {
+    margin-top: 1px;
+    font-size: 9pt;
+    line-height: 1.25;
+    color: #172033;
+  }
+  .layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 2.42in;
+    gap: 0.12in;
+    min-height: 0;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.06in;
+    min-height: 0;
+  }
+  .motw {
+    display: grid;
+    grid-template-columns: 1.28in 1.28in 1fr;
+    gap: 0.06in;
+    align-items: center;
+    background: #F4F7FB;
+    border-top: 3px solid #C8962E;
+    padding: 0.05in 0.1in 0.05in 0.06in;
+  }
+  .motw img {
+    width: 1.24in;
+    height: 1.24in;
+    object-fit: contain;
+  }
+  .motw .label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #8A6A1E;
+  }
+  .motw h2 {
+    margin-top: 1px;
+    font-size: 12.5pt;
+    line-height: 1.05;
+    color: #101D35;
+  }
+  .motw h2 span {
+    color: #687386;
+    font-weight: 700;
+  }
+  .motw p {
+    margin-top: 0.04in;
+    font-size: 8.6pt;
+    line-height: 1.28;
+    color: #172033;
+  }
+  .ranks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+  .rank-row {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 0.28in 0.38in 0.7in 1fr;
+    column-gap: 0.06in;
+    align-items: center;
+    border-bottom: 0.6px solid #E3E8EF;
+    min-height: 0;
+    padding: 0.015in 0;
+  }
+  .rank-row:last-child { border-bottom: 0; }
+  .rank-num {
+    font-size: 14pt;
+    font-weight: 700;
+    color: #101D35;
+    text-align: center;
+    line-height: 1;
+  }
+  .move {
+    font-size: 8pt;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .move.up { color: #18794E; }
+  .move.down { color: #B42318; }
+  .move.flat { color: #8A93A2; }
+  .logo {
+    width: 0.68in;
+    height: 0.68in;
+    object-fit: contain;
+  }
+  .name-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.08in;
+  }
+  .name {
+    font-size: 9.4pt;
+    font-weight: 700;
+    color: #101D35;
+    line-height: 1.05;
+  }
+  .prev {
+    font-size: 7pt;
+    font-weight: 700;
+    color: #8A93A2;
+  }
+  .keynote {
+    margin-top: 1px;
+    font-size: 7.3pt;
+    font-weight: 700;
+    color: #3E4C63;
+    line-height: 1.15;
+  }
+  .copy p {
+    margin-top: 1px;
+    font-size: 8pt;
+    line-height: 1.22;
+    color: #172033;
+  }
+  aside {
+    background: #F7F9FB;
+    border-radius: 4px;
+    padding: 0.08in 0.1in 0.08in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.08in;
+  }
+  .module h2 {
+    font-size: 8pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #101D35;
+    border-bottom: 2px solid #C8962E;
+    padding-bottom: 2px;
+    margin-bottom: 0.04in;
+  }
+  .standings { list-style: none; }
+  .standings li {
+    display: grid;
+    grid-template-columns: 0.16in 1fr 0.38in 0.32in;
+    align-items: baseline;
+    font-size: 8pt;
+    line-height: 1.35;
+  }
+  .seed { font-weight: 700; color: #8A93A2; }
+  .tname { font-weight: 700; color: #172033; }
+  .rec, .pf { text-align: right; font-weight: 700; }
+  .pf { color: #3E4C63; }
+  .bid {
+    display: grid;
+    grid-template-columns: 0.38in 1fr;
+    gap: 0 0.06in;
+    margin-bottom: 0.045in;
+  }
+  .bid .amt {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #101D35;
+    line-height: 1;
+  }
+  .bid strong {
+    display: block;
+    font-size: 8pt;
+    line-height: 1.1;
+    color: #101D35;
+  }
+  .bid span {
+    display: block;
+    font-size: 7.1pt;
+    line-height: 1.2;
+    color: #5E6B80;
+  }
+  .trade p {
+    font-size: 8pt;
+    line-height: 1.28;
+    color: #172033;
+  }
+  .trade .meta {
+    margin-top: 2px;
+    font-size: 7pt;
+    font-weight: 700;
+    color: #687386;
+  }
+
+  .week-slicer {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.55rem 0.75rem; background: #1b1f24; border-bottom: 3px solid #F47321;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .week-slicer span { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #3ecf8e; }
+  .week-slicer select {
+    color-scheme: dark;
+    height: 36px; min-width: 148px;
+    color: #e8ecef; background: #262c33; border: 2px solid #F47321; border-radius: 6px;
+    font: 700 16px/1 Helvetica, Arial, sans-serif;
+    padding: 0 8px;
+  }
+  @media print { .week-slicer { display: none !important; } }
+  html.framed .week-slicer { display: none !important; }
+</style>
+<script>if(window.self!==window.top)document.documentElement.classList.add("framed");</script>
+</head>
+<body>
+<div class="week-slicer" id="week-slicer">
+  <span>WEEK</span>
+  <select id="week-pick" aria-label="Week">
+    <option value="../week_1/SFFL_2026_Week_1_Power_Rankings.pdf">Week 1</option>
+    <option value="../week_2/SFFL_2026_Week_2_Power_Rankings.html">Week 2</option>
+    <option value="../week_3/SFFL_2026_Week_3_Power_Rankings.html">Week 3</option>
+    <option value="../week_4/SFFL_2026_Week_4_Power_Rankings.html">Week 4</option>
+    <option value="../week_5_6/SFFL_2026_Weeks_5_6_Power_Rankings.html">Weeks 5–6</option>
+    <option value="../week_7/SFFL_2026_Week_7_Power_Rankings.html">Week 7</option>
+    <option value="../week_8/SFFL_2026_Week_8_Power_Rankings.html">Week 8</option>
+    <option value="../week_9/SFFL_2026_Week_9_Power_Rankings.html">Week 9</option>
+  </select>
+</div>
+<script>
+(function () {
+  var pick = document.getElementById("week-pick");
+  var here = location.pathname.split("/").pop();
+  for (var i = 0; i < pick.options.length; i++) {
+    if (pick.options[i].value.split("/").pop() === here) pick.selectedIndex = i;
+  }
+  pick.addEventListener("change", function () { location.href = pick.value; });
+})();
+</script>
+
+  <div class="page">
+    <header>
+      <div>
+        <div class="kicker">SFFL WEEK 2</div>
+        <h1>POWER RANKINGS</h1>
+      </div>
+      <div>
+        <div class="dek-kicker">Week 2 / 2026</div>
+        <p class="dek">Allen hangs five touchdowns. Next week, Dirk's Squad and the Fins Maniacs meet at 2–0.</p>
+      </div>
+    </header>
+    <div class="layout">
+      <main>
+        <section class="motw">
+          <img src="week2_logo_cache/9.png" alt="Dirk's Squad">
+          <img src="week2_logo_cache/6.png" alt="The Fins Maniacs">
+          <div>
+            <div class="label">MATCHUP OF THE WEEK · WEEK 3</div>
+            <h2>Dirk's Squad <span>2–0</span> vs The Fins Maniacs <span>2–0</span></h2>
+            <p>Dirk's Squad and the Fins Maniacs meet in Week 3, both at 2–0. Dak Prescott threw four touchdowns, the last to CeeDee Lamb, with Brock Purdy producing from the bench. The Fins Maniacs won by nine after Jaxson Dart left in the first quarter. One unbeaten record ends this week.</p>
+          </div>
+        </section>
+        <ol class="ranks">
+          
+        <li class="rank-row">
+          <div class="rank-num">1</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week2_logo_cache/4.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Dylan Panthers</span>
+              <span class="prev">Last week 1</span>
+            </div>
+            <div class="keynote">2–0 · Holler 1st · 328 PF · W 178–71 vs Greaseheads</div>
+            <p>Josh Allen accounted for five touchdowns, three passing and two rushing, in a 178-point demolition. Taylor and Cook both scored, Kelce topped 100 yards in overtime, and the Patriots defense added a scoop-and-score.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">2</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week2_logo_cache/10.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">New England Patriots</span>
+              <span class="prev">Last week 2</span>
+            </div>
+            <div class="keynote">2–0 · Salois & Yaggy 1st · 275 PF · W 126–71 vs Gooch Canal</div>
+            <p>Jaxon Smith-Njigba caught nine passes for 155 yards and three touchdowns, a receiver day that ended the matchup. DeVonta Smith added a score and 117 yards. The Patriots then bid $55 on Denzel Boston.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">3</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week2_logo_cache/6.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Fins Maniacs</span>
+              <span class="prev">Last week 3</span>
+            </div>
+            <div class="keynote">2–0 · Salois & Yaggy 2nd · 242 PF · W 118–109 vs Mishaps</div>
+            <p>The Fins moved to 2–0 after Jaxson Dart left in the first quarter. Patrick Mahomes threw for 382 yards and three touchdowns, and Jahmyr Gibbs added a receiving score. The margin was nine.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">4</div>
+          <div class="move up">▲ 3</div>
+          <img class="logo" src="week2_logo_cache/9.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Dirk's Squad</span>
+              <span class="prev">Last week 7</span>
+            </div>
+            <div class="keynote">2–0 · Holler 2nd · 221 PF · W 117–74 vs SBC</div>
+            <p>Dak Prescott threw four touchdowns, the last of them to CeeDee Lamb, and passed Tony Romo as Dallas's all-time leader. Lamb finished with two scores. Brock Purdy had a starter's afternoon from the bench.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">5</div>
+          <div class="move down">▼ 1</div>
+          <img class="logo" src="week2_logo_cache/2.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Mitchell Mishaps</span>
+              <span class="prev">Last week 4</span>
+            </div>
+            <div class="keynote">1–1 · Salois & Yaggy 3rd · 256 PF · L 109–118 vs Maniacs</div>
+            <p>Amon-Ra St. Brown caught two touchdowns and went for 142 yards, with Kenneth Walker adding 117 on the ground. It still was not enough once Jaxson Dart exited in the first quarter.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">6</div>
+          <div class="move up">▲ 2</div>
+          <img class="logo" src="week2_logo_cache/5.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Team We Are Here</span>
+              <span class="prev">Last week 8</span>
+            </div>
+            <div class="keynote">1–1 · Holler 3rd · 207 PF · W 110–108 vs Mia Hamsters</div>
+            <p>Davante Adams won it on Monday night: eight catches, 195 yards and two touchdowns, with Puka Nacua out. The margin was two. Jalen Hurts watched from the bench while Caleb Williams started quiet.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">7</div>
+          <div class="move up">▲ 2</div>
+          <img class="logo" src="week2_logo_cache/3.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Mia Hamsters</span>
+              <span class="prev">Last week 9</span>
+            </div>
+            <div class="keynote">0–2 · Salois & Yaggy 4th · 203 PF · L 108–110 vs We Are Here</div>
+            <p>Ja'Marr Chase scored twice, and Christian McCaffrey ran for two more, including the 100th touchdown of his career. None of it mattered on Monday night. The Hamsters lost by two.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">8</div>
+          <div class="move down">▼ 3</div>
+          <img class="logo" src="week2_logo_cache/7.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Short Bus Crew</span>
+              <span class="prev">Last week 5</span>
+            </div>
+            <div class="keynote">0–2 · Holler 4th · 195 PF · L 74–117 vs Dirk's Squad</div>
+            <p>Derrick Henry found the end zone and still could not keep the Short Bus Crew close. Puka Nacua sat out, the passing game never arrived, and Dirk's Squad was in control throughout.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">9</div>
+          <div class="move down">▼ 3</div>
+          <img class="logo" src="week2_logo_cache/8.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Omar Malik / Gooch Canal</span>
+              <span class="prev">Last week 6</span>
+            </div>
+            <div class="keynote">0–2 · Salois & Yaggy 5th · 184 PF · L 71–126 vs Patriots</div>
+            <p>Jaxon Smith-Njigba's three touchdowns were the whole afternoon. Gooch Canal's best starter was kicker Brandon Aubrey, while Jaylen Waddle's 138 receiving yards sat on the bench. Diggs was dealt afterward.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">10</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week2_logo_cache/1.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Halloween Greaseheads</span>
+              <span class="prev">Last week 10</span>
+            </div>
+            <div class="keynote">0–2 · Holler 5th · 164 PF · L 71–178 vs Panthers</div>
+            <p>There was no answer for Josh Allen's five-touchdown day. Saquon Barkley was stuffed, DJ Moore disappeared, and the deficit reached 107. Sam answered later, adding Tyler Shough for $23 and Stefon Diggs for Brian Thomas Jr.</p>
+          </div>
+        </li>
+        </ol>
+      </main>
+      <aside>
+        <section class='module'><h2>Salois & Yaggy Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>Patriots</span><span class='rec'>2–0</span><span class='pf'>275</span></li><li><span class='seed'>2</span><span class='tname'>Maniacs</span><span class='rec'>2–0</span><span class='pf'>242</span></li><li><span class='seed'>3</span><span class='tname'>Mishaps</span><span class='rec'>1–1</span><span class='pf'>256</span></li><li><span class='seed'>4</span><span class='tname'>Mia Hamsters</span><span class='rec'>0–2</span><span class='pf'>203</span></li><li><span class='seed'>5</span><span class='tname'>Gooch Canal</span><span class='rec'>0–2</span><span class='pf'>184</span></li></ol></section><section class='module'><h2>Holler Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>Panthers</span><span class='rec'>2–0</span><span class='pf'>328</span></li><li><span class='seed'>2</span><span class='tname'>Dirk's Squad</span><span class='rec'>2–0</span><span class='pf'>221</span></li><li><span class='seed'>3</span><span class='tname'>We Are Here</span><span class='rec'>1–1</span><span class='pf'>207</span></li><li><span class='seed'>4</span><span class='tname'>SBC</span><span class='rec'>0–2</span><span class='pf'>195</span></li><li><span class='seed'>5</span><span class='tname'>Greaseheads</span><span class='rec'>0–2</span><span class='pf'>164</span></li></ol></section>
+        <section class="module">
+          <h2>Top Waiver Bids</h2>
+          <div class="bid"><div class="amt">$55</div><div><strong>Denzel Boston, WR</strong><span>Patriots. Next: Greaseheads $11.</span></div></div>
+          <div class="bid"><div class="amt">$33</div><div><strong>Jonah Coleman, RB</strong><span>Maniacs. Next: Patriots $23.</span></div></div>
+          <div class="bid"><div class="amt">$23</div><div><strong>Tyler Shough, QB</strong><span>Greaseheads. Next: Mishaps $7.</span></div></div>
+          <div class="bid"><div class="amt">$15</div><div><strong>Bryce Young, QB</strong><span>Maniacs. Next: SBC $1.</span></div></div>
+          <div class="bid"><div class="amt">$10</div><div><strong>Matthew Stafford, QB</strong><span>Gooch Canal. No other bid.</span></div></div>
+        </section>
+        <section class="module trade">
+          <h2>Trades</h2>
+          <p>Gooch Canal sent Stefon Diggs and $5 FAAB to the Greaseheads for Brian Thomas Jr.</p>
+          <div class="meta">Processed by LM · Wed Sep 23</div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

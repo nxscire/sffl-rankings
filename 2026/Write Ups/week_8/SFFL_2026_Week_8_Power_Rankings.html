@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SFFL 2026 Week 8 Power Rankings</title>
+<style>
+  
+  
+  @page { size: 11in 8.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1b1f24; }
+  body {
+    width: 11in; height: 8.5in; font-family: "SFFL Sans", Arial, sans-serif;
+    color: #e8ecef; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page {
+    width: 11in; height: 8.5in; padding: 0.10in 0.16in 0.07in;
+    display: flex; flex-direction: column; gap: 0.03in; overflow: hidden;
+  }
+  header {
+    display: grid; grid-template-columns: 2.15in 1fr; align-items: end;
+    border-bottom: 4px solid #F47321; padding-bottom: 0.03in; gap: 0.12in;
+  }
+  .kicker { font-size: 8.5pt; font-weight: 700; letter-spacing: .14em; color: #F47321; }
+  h1 { font-size: 20pt; line-height: .9; letter-spacing: -.02em; color: #3ecf8e; }
+  .dek-kicker { font-size: 8pt; font-weight: 700; letter-spacing: .08em; color: #9eb0a8; text-transform: uppercase; }
+  .dek { margin-top: 1px; font-size: 9pt; line-height: 1.2; }
+  .layout { flex: 1; display: grid; grid-template-columns: 1fr 2.46in; gap: .09in; min-height: 0; }
+  main { display: flex; flex-direction: column; gap: .03in; min-height: 0; }
+  .motw {
+    display: grid; grid-template-columns: 1.28in 1.28in 1fr; gap: .05in; align-items: center;
+    background: #262c33; border-top: 4px solid #F47321; padding: .02in .07in .02in .03in;
+  }
+  .motw img { width: 1.26in; height: 1.26in; object-fit: contain; }
+  .motw .label { font-size: 7.5pt; font-weight: 700; letter-spacing: .12em; color: #F47321; }
+  .motw h2 { margin-top: 1px; font-size: 11pt; line-height: 1.05; color: #3ecf8e; }
+  .motw h2 span { color: #9eb0a8; font-weight: 700; }
+  .motw p { margin-top: .02in; font-size: 8pt; line-height: 1.22; }
+  .ranks { list-style: none; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .rank-row {
+    flex: 1; display: grid; grid-template-columns: .26in .36in .68in 1fr; column-gap: .045in;
+    align-items: center; border-bottom: .6px solid #3a424c; min-height: 0;
+  }
+  .rank-row:last-child { border-bottom: 0; }
+  .rank-num { font-size: 13.5pt; font-weight: 700; color: #F47321; text-align: center; line-height: 1; }
+  .move { font-size: 8pt; font-weight: 700; text-align: center; line-height: 1; white-space: nowrap; }
+  .move.up { color: #3ecf8e; } .move.down { color: #f07167; } .move.flat { color: #8b949e; }
+  .logo { width: .66in; height: .66in; object-fit: contain; }
+  .name-line { display: flex; align-items: baseline; gap: .07in; }
+  .name { font-size: 9.1pt; font-weight: 700; color: #3ecf8e; line-height: 1.02; }
+  .prev { font-size: 6.8pt; font-weight: 700; color: #8b949e; white-space: nowrap; }
+  .keynote { margin-top: 1px; font-size: 6.5pt; font-weight: 700; color: #c5ced6; line-height: 1.12; }
+  .copy p { margin-top: 1px; font-size: 7.45pt; line-height: 1.16; }
+  aside {
+    background: #262c33; border-radius: 4px; border-top: 4px solid #F47321;
+    box-shadow: inset 0 0 0 1px #314038; padding: .08in .08in .06in;
+    display: flex; flex-direction: column; gap: .08in;
+  }
+  .module h2 {
+    font-size: 8pt; letter-spacing: .06em; text-transform: uppercase; color: #3ecf8e;
+    border-bottom: 2px solid #3ecf8e; padding-bottom: 3px; margin-bottom: .04in;
+  }
+  .standings { list-style: none; }
+  .standings li {
+    display: grid; grid-template-columns: .18in 1fr .46in .32in; align-items: baseline;
+    font-size: 7.4pt; line-height: 1.45;
+  }
+  .seed { font-weight: 700; color: #F47321; }
+  .tname, .rec, .pf { font-weight: 700; } .tname { color: #3ecf8e; } .rec, .pf { text-align: right; } .pf { color: #9eb0a8; }
+
+  .week-slicer {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.55rem 0.75rem; background: #1b1f24; border-bottom: 3px solid #F47321;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .week-slicer span { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #3ecf8e; }
+  .week-slicer select {
+    color-scheme: dark;
+    height: 36px; min-width: 148px;
+    color: #e8ecef; background: #262c33; border: 2px solid #F47321; border-radius: 6px;
+    font: 700 16px/1 Helvetica, Arial, sans-serif;
+    padding: 0 8px;
+  }
+  @media print { .week-slicer { display: none !important; } }
+  html.framed .week-slicer { display: none !important; }
+</style>
+<script>if(window.self!==window.top)document.documentElement.classList.add("framed");</script>
+</head>
+<body>
+<div class="week-slicer" id="week-slicer">
+  <span>WEEK</span>
+  <select id="week-pick" aria-label="Week">
+    <option value="../week_1/SFFL_2026_Week_1_Power_Rankings.pdf">Week 1</option>
+    <option value="../week_2/SFFL_2026_Week_2_Power_Rankings.html">Week 2</option>
+    <option value="../week_3/SFFL_2026_Week_3_Power_Rankings.html">Week 3</option>
+    <option value="../week_4/SFFL_2026_Week_4_Power_Rankings.html">Week 4</option>
+    <option value="../week_5_6/SFFL_2026_Weeks_5_6_Power_Rankings.html">Weeks 5–6</option>
+    <option value="../week_7/SFFL_2026_Week_7_Power_Rankings.html">Week 7</option>
+    <option value="../week_8/SFFL_2026_Week_8_Power_Rankings.html">Week 8</option>
+    <option value="../week_9/SFFL_2026_Week_9_Power_Rankings.html">Week 9</option>
+  </select>
+</div>
+<script>
+(function () {
+  var pick = document.getElementById("week-pick");
+  var here = location.pathname.split("/").pop();
+  for (var i = 0; i < pick.options.length; i++) {
+    if (pick.options[i].value.split("/").pop() === here) pick.selectedIndex = i;
+  }
+  pick.addEventListener("change", function () { location.href = pick.value; });
+})();
+</script>
+
+<div class="page">
+  <header>
+    <div><div class="kicker">SFFL WEEK 8</div><h1>POWER RANKINGS</h1></div>
+    <div><div class="dek-kicker">Week 8 / 2026</div><p class="dek">Mia Hamsters take No. 1 after hanging 165 on Halloween Greaseheads. The Fins Maniacs visit in Week 9.</p></div>
+  </header>
+  <div class="layout">
+    <main>
+      <section class="motw">
+        <img src="week8_logo_cache/6.png" alt="The Fins Maniacs">
+        <img src="week8_logo_cache/3.png" alt="Mia Hamsters">
+        <div>
+          <div class="label">MATCHUP OF THE WEEK · WEEK 9</div>
+          <h2>The Fins Maniacs <span>5–3</span> at Mia Hamsters <span>4–4</span></h2>
+          <p>Mia Hamsters just took No. 1 after Joe Burrow threw for 462 yards and six touchdowns and hung 165 on Halloween Greaseheads. The Fins Maniacs come in off Jahmyr Gibbs's 30-yard score, with Patrick Mahomes's three touchdowns left on the bench. The new No. 1 hosts the team climbing back into the top four.</p>
+        </div>
+      </section>
+      <ol class="ranks">
+        <li class="rank-row">
+          <div class="rank-num">1</div>
+          <div class="move up">▲ 2</div>
+          <img class="logo" src="week8_logo_cache/3.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">Mia Hamsters</span>
+              <span class="prev">Wk 7: 3</span></div>
+            <div class="keynote">4–4 · Salois & Yaggy 4th · 1004 PF · W 165–92 vs Halloween Greaseheads</div>
+            <p>Joe Burrow completed 38 of 48 passes for 462 yards and five touchdowns and ran one in during overtime. Ja'Marr Chase caught 11 passes for 141 yards and a score, and Mia Hamsters hung 165 on Halloween Greaseheads.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">2</div>
+          <div class="move down">▼ 1</div>
+          <img class="logo" src="week8_logo_cache/10.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">New England Patriots</span>
+              <span class="prev">Wk 7: 1</span></div>
+            <div class="keynote">6–2 · Salois & Yaggy 1st · 960 PF · L 104–127 vs Team We Are Here</div>
+            <p>Jaxon Smith-Njigba scored from 43 yards, Lamar Jackson's only pass fell incomplete, and Bijan Robinson ran for 76 yards without a touchdown. Team We Are Here beat New England Patriots and ended the stay at No. 1.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">3</div>
+          <div class="move down">▼ 1</div>
+          <img class="logo" src="week8_logo_cache/2.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">The Mitchell Mishaps</span>
+              <span class="prev">Wk 7: 2</span></div>
+            <div class="keynote">5–3 · Salois & Yaggy 2nd · 1008 PF · W 128–67 vs Dirk's Squad</div>
+            <p>D'Andre Swift carried 27 times for 69 yards and three touchdowns, and Michael Wilson and Trey McBride each caught a score. The Mitchell Mishaps turned that day into a rout of Dirk's Squad.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">4</div>
+          <div class="move up">▲ 1</div>
+          <img class="logo" src="week8_logo_cache/6.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">The Fins Maniacs</span>
+              <span class="prev">Wk 7: 5</span></div>
+            <div class="keynote">5–3 · Salois & Yaggy 3rd · 930 PF · W 100–93 vs The Dylan Panthers</div>
+            <p>Jahmyr Gibbs scored from 30 yards and Justin Jefferson caught a touchdown as The Fins Maniacs edged The Dylan Panthers. Patrick Mahomes threw for 321 yards and three scores and stayed on the bench.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">5</div>
+          <div class="move up">▲ 2</div>
+          <img class="logo" src="week8_logo_cache/8.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">Omar Malik / Gooch Canal</span>
+              <span class="prev">Wk 7: 7</span></div>
+            <div class="keynote">3–4–1 · Salois & Yaggy 5th · 953 PF · W 139–135 vs The Short Bus Crew</div>
+            <p>Brock Bowers scored twice, and Jaylen Warren and Jonah Coleman each ran one in, Coleman in his first week with the club. Gooch Canal won the week's closest game over The Short Bus Crew without starting a defense.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">6</div>
+          <div class="move up">▲ 3</div>
+          <img class="logo" src="week8_logo_cache/5.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">Team We Are Here</span>
+              <span class="prev">Wk 7: 9</span></div>
+            <div class="keynote">3–4–1 · Holler 2nd · 882 PF · W 127–104 vs New England Patriots</div>
+            <p>Tee Higgins caught 10 passes for 155 yards and two touchdowns, and Chuba Hubbard ran for 81 yards and a score. Team We Are Here used that to knock New England Patriots off the top of the rankings.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">7</div>
+          <div class="move down">▼ 3</div>
+          <img class="logo" src="week8_logo_cache/4.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">The Dylan Panthers</span>
+              <span class="prev">Wk 7: 4</span></div>
+            <div class="keynote">3–5 · Holler 3rd · 946 PF · L 93–100 vs The Fins Maniacs</div>
+            <p>Josh Allen completed 21 of 34 passes for 289 yards and two touchdowns and ran one in, and Dalton Kincaid scored from 23 yards. The featured backs never broke the game open, and The Dylan Panthers lost the one-score game.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">8</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week8_logo_cache/7.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">The Short Bus Crew</span>
+              <span class="prev">Wk 7: 8</span></div>
+            <div class="keynote">3–5 · Holler 4th · 893 PF · L 135–139 vs Omar Malik / Gooch Canal</div>
+            <p>Puka Nacua scored from 18 yards, and Bucky Irving and Derrick Henry each ran one in. The Short Bus Crew put up a heavy score and still lost the week's closest game to Gooch Canal.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">9</div>
+          <div class="move down">▼ 3</div>
+          <img class="logo" src="week8_logo_cache/1.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">Halloween Greaseheads</span>
+              <span class="prev">Wk 7: 6</span></div>
+            <div class="keynote">3–5 · Holler 5th · 874 PF · L 92–165 vs Mia Hamsters</div>
+            <p>Drake Maye scored on a 2-yard run, but Mia Hamsters turned the afternoon into the week's blowout. Tony Pollard ran for 117 yards and two touchdowns on the bench, the second straight week Halloween Greaseheads left him there.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">10</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week8_logo_cache/9.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">Dirk's Squad</span>
+              <span class="prev">Wk 7: 10</span></div>
+            <div class="keynote">4–4 · Holler 1st · 834 PF · L 67–128 vs The Mitchell Mishaps</div>
+            <p>Geno Smith threw for 290 yards and two touchdowns, and Dirk's Squad still posted the week's low score. Kyren Williams's 1-yard run was the only touchdown around him, a fourth straight loss.</p>
+          </div>
+        </li></ol>
+    </main>
+    <aside>
+      <section class='module'><h2>Salois & Yaggy Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>New England Patriots</span><span class='rec'>6–2</span><span class='pf'>960</span></li><li><span class='seed'>2</span><span class='tname'>The Mitchell Mishaps</span><span class='rec'>5–3</span><span class='pf'>1008</span></li><li><span class='seed'>3</span><span class='tname'>The Fins Maniacs</span><span class='rec'>5–3</span><span class='pf'>930</span></li><li><span class='seed'>4</span><span class='tname'>Mia Hamsters</span><span class='rec'>4–4</span><span class='pf'>1004</span></li><li><span class='seed'>5</span><span class='tname'>Omar Malik / Gooch Canal</span><span class='rec'>3–4–1</span><span class='pf'>953</span></li></ol></section><section class='module'><h2>Holler Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>Dirk's Squad</span><span class='rec'>4–4</span><span class='pf'>834</span></li><li><span class='seed'>2</span><span class='tname'>Team We Are Here</span><span class='rec'>3–4–1</span><span class='pf'>882</span></li><li><span class='seed'>3</span><span class='tname'>The Dylan Panthers</span><span class='rec'>3–5</span><span class='pf'>946</span></li><li><span class='seed'>4</span><span class='tname'>The Short Bus Crew</span><span class='rec'>3–5</span><span class='pf'>893</span></li><li><span class='seed'>5</span><span class='tname'>Halloween Greaseheads</span><span class='rec'>3–5</span><span class='pf'>874</span></li></ol></section>
+    </aside>
+  </div>
+</div>
+</body>
+</html>

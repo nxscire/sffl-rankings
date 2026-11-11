@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SFFL 2026 Power Rankings</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #1b1f24; color: #e8ecef; font-family: Helvetica, Arial, sans-serif; }
+  body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+  header {
+    position: relative; z-index: 5; flex: none;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 0.7rem 1rem; background: #1b1f24; border-bottom: 3px solid #F47321;
+  }
+  h1 { margin: 0; font-size: 0.95rem; letter-spacing: 0.14em; color: #3ecf8e; }
+  .slicer { display: flex; align-items: center; gap: 0.6rem; }
+  .slicer span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; color: #3ecf8e; }
+  select {
+    color-scheme: dark;
+    height: 36px; min-width: 9.5rem;
+    color: #e8ecef; background: #262c33; border: 2px solid #F47321; border-radius: 6px;
+    font: 700 16px/1 Helvetica, Arial, sans-serif;
+    padding: 0 8px; cursor: pointer;
+  }
+  iframe { position: relative; z-index: 0; flex: 1; width: 100%; min-height: 0; border: 0; background: #1b1f24; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SFFL</h1>
+  <label class="slicer">
+    <span>WEEK</span>
+    <select id="week-pick" aria-label="Week">
+      <option value="2026/Write Ups/week_1/SFFL_2026_Week_1_Power_Rankings.pdf">Week 1</option>
+      <option value="2026/Write Ups/week_2/SFFL_2026_Week_2_Power_Rankings.html">Week 2</option>
+      <option value="2026/Write Ups/week_3/SFFL_2026_Week_3_Power_Rankings.html">Week 3</option>
+      <option value="2026/Write Ups/week_4/SFFL_2026_Week_4_Power_Rankings.html">Week 4</option>
+      <option value="2026/Write Ups/week_5_6/SFFL_2026_Weeks_5_6_Power_Rankings.html">Weeks 5–6</option>
+      <option value="2026/Write Ups/week_7/SFFL_2026_Week_7_Power_Rankings.html">Week 7</option>
+      <option value="2026/Write Ups/week_8/SFFL_2026_Week_8_Power_Rankings.html">Week 8</option>
+      <option value="2026/Write Ups/week_9/SFFL_2026_Week_9_Power_Rankings.html" selected>Week 9</option>
+    </select>
+  </label>
+</header>
+<iframe id="sheet" title="Power rankings" src="2026/Write%20Ups/week_9/SFFL_2026_Week_9_Power_Rankings.html"></iframe>
+<script>
+const pick = document.getElementById("week-pick");
+const frame = document.getElementById("sheet");
+function openWeek(index) {
+  pick.selectedIndex = index;
+  frame.src = pick.options[index].value.split(" ").join("%20");
+  const slug = pick.options[index].textContent.replace("Weeks ", "").replace("Week ", "").replace("–", "-");
+  history.replaceState(null, "", "#week-" + slug);
+}
+pick.addEventListener("change", () => openWeek(pick.selectedIndex));
+const hash = decodeURIComponent(location.hash.replace("#week-", ""));
+const start = [...pick.options].findIndex((option) => {
+  const slug = option.textContent.replace("Weeks ", "").replace("Week ", "").replace("–", "-");
+  return slug === hash;
+});
+openWeek(start === -1 ? pick.options.length - 1 : start);
+</script>
+</body>
+</html>

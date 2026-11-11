@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SFFL 2026 Week 3 Power Rankings</title>
+<style>
+  
+  
+  
+  @page { size: 11in 8.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body {
+    width: 11in;
+    height: 8.5in;
+    font-family: "SFFL Sans", Arial, sans-serif;
+    color: #172033;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 11in;
+    height: 8.5in;
+    padding: 0.16in 0.2in 0.12in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.07in;
+  }
+  header {
+    display: grid;
+    grid-template-columns: 2.35in 1fr;
+    align-items: end;
+    border-bottom: 3px solid #101D35;
+    padding-bottom: 0.05in;
+    gap: 0.16in;
+  }
+  .kicker {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #8A6A1E;
+  }
+  h1 {
+    font-size: 20pt;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: #101D35;
+  }
+  .dek-kicker {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #687386;
+    text-transform: uppercase;
+  }
+  .dek {
+    margin-top: 1px;
+    font-size: 9pt;
+    line-height: 1.25;
+    color: #172033;
+  }
+  .layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 2.55in;
+    gap: 0.12in;
+    min-height: 0;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05in;
+    min-height: 0;
+  }
+  .motw {
+    display: grid;
+    grid-template-columns: 1.22in 1.22in 1fr;
+    gap: 0.06in;
+    align-items: center;
+    background: #F4F7FB;
+    border-top: 3px solid #C8962E;
+    padding: 0.04in 0.08in 0.04in 0.05in;
+  }
+  .motw img {
+    width: 1.18in;
+    height: 1.18in;
+    object-fit: contain;
+  }
+  .motw .label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #8A6A1E;
+  }
+  .motw h2 {
+    margin-top: 1px;
+    font-size: 11.5pt;
+    line-height: 1.05;
+    color: #101D35;
+  }
+  .motw h2 span {
+    color: #687386;
+    font-weight: 700;
+  }
+  .motw p {
+    margin-top: 0.03in;
+    font-size: 8.2pt;
+    line-height: 1.25;
+    color: #172033;
+  }
+  .ranks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+  .rank-row {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 0.26in 0.36in 0.62in 1fr;
+    column-gap: 0.05in;
+    align-items: center;
+    border-bottom: 0.6px solid #E3E8EF;
+    min-height: 0;
+    padding: 0.01in 0;
+  }
+  .rank-row:last-child { border-bottom: 0; }
+  .rank-num {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #101D35;
+    text-align: center;
+    line-height: 1;
+  }
+  .move {
+    font-size: 8pt;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .move.up { color: #18794E; }
+  .move.down { color: #B42318; }
+  .move.flat { color: #8A93A2; }
+  .logo {
+    width: 0.6in;
+    height: 0.6in;
+    object-fit: contain;
+  }
+  .name-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.08in;
+  }
+  .name {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #101D35;
+    line-height: 1.05;
+  }
+  .prev {
+    font-size: 7pt;
+    font-weight: 700;
+    color: #8A93A2;
+  }
+  .keynote {
+    margin-top: 1px;
+    font-size: 7pt;
+    font-weight: 700;
+    color: #3E4C63;
+    line-height: 1.15;
+  }
+  .copy p {
+    margin-top: 1px;
+    font-size: 7.7pt;
+    line-height: 1.2;
+    color: #172033;
+  }
+  aside {
+    background: #F7F9FB;
+    border-radius: 4px;
+    padding: 0.07in 0.08in 0.06in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.06in;
+  }
+  .module h2 {
+    font-size: 7.6pt;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #101D35;
+    border-bottom: 2px solid #C8962E;
+    padding-bottom: 2px;
+    margin-bottom: 0.03in;
+  }
+  .standings { list-style: none; }
+  .standings li {
+    display: grid;
+    grid-template-columns: 0.16in 1fr 0.34in 0.28in;
+    align-items: baseline;
+    font-size: 6.7pt;
+    line-height: 1.32;
+  }
+  .seed { font-weight: 700; color: #8A93A2; }
+  .tname { font-weight: 700; color: #172033; }
+  .rec, .pf { text-align: right; font-weight: 700; }
+  .pf { color: #3E4C63; }
+  .bid {
+    display: grid;
+    grid-template-columns: 0.36in 1fr;
+    gap: 0 0.05in;
+    margin-bottom: 0.035in;
+  }
+  .bid .amt {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #101D35;
+    line-height: 1;
+  }
+  .bid strong {
+    display: block;
+    font-size: 7.4pt;
+    line-height: 1.1;
+    color: #101D35;
+  }
+  .bid span {
+    display: block;
+    font-size: 6.6pt;
+    line-height: 1.18;
+    color: #5E6B80;
+  }
+  .trade p {
+    font-size: 7.2pt;
+    line-height: 1.25;
+    color: #172033;
+  }
+  .trade .meta {
+    margin-top: 2px;
+    font-size: 6.6pt;
+    font-weight: 700;
+    color: #687386;
+  }
+
+  .week-slicer {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.55rem 0.75rem; background: #1b1f24; border-bottom: 3px solid #F47321;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  .week-slicer span { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: #3ecf8e; }
+  .week-slicer select {
+    color-scheme: dark;
+    height: 36px; min-width: 148px;
+    color: #e8ecef; background: #262c33; border: 2px solid #F47321; border-radius: 6px;
+    font: 700 16px/1 Helvetica, Arial, sans-serif;
+    padding: 0 8px;
+  }
+  @media print { .week-slicer { display: none !important; } }
+  html.framed .week-slicer { display: none !important; }
+</style>
+<script>if(window.self!==window.top)document.documentElement.classList.add("framed");</script>
+</head>
+<body>
+<div class="week-slicer" id="week-slicer">
+  <span>WEEK</span>
+  <select id="week-pick" aria-label="Week">
+    <option value="../week_1/SFFL_2026_Week_1_Power_Rankings.pdf">Week 1</option>
+    <option value="../week_2/SFFL_2026_Week_2_Power_Rankings.html">Week 2</option>
+    <option value="../week_3/SFFL_2026_Week_3_Power_Rankings.html">Week 3</option>
+    <option value="../week_4/SFFL_2026_Week_4_Power_Rankings.html">Week 4</option>
+    <option value="../week_5_6/SFFL_2026_Weeks_5_6_Power_Rankings.html">Weeks 5–6</option>
+    <option value="../week_7/SFFL_2026_Week_7_Power_Rankings.html">Week 7</option>
+    <option value="../week_8/SFFL_2026_Week_8_Power_Rankings.html">Week 8</option>
+    <option value="../week_9/SFFL_2026_Week_9_Power_Rankings.html">Week 9</option>
+  </select>
+</div>
+<script>
+(function () {
+  var pick = document.getElementById("week-pick");
+  var here = location.pathname.split("/").pop();
+  for (var i = 0; i < pick.options.length; i++) {
+    if (pick.options[i].value.split("/").pop() === here) pick.selectedIndex = i;
+  }
+  pick.addEventListener("change", function () { location.href = pick.value; });
+})();
+</script>
+
+  <div class="page">
+    <header>
+      <div>
+        <div class="kicker">SFFL WEEK 3</div>
+        <h1>POWER RANKINGS</h1>
+      </div>
+      <div>
+        <div class="dek-kicker">Week 3 / 2026</div>
+        <p class="dek">Three first wins. Next week the top four meet: The Dylan Panthers against Dirk's Squad, and New England Patriots against The Fins Maniacs.</p>
+      </div>
+    </header>
+    <div class="layout">
+      <main>
+        <section class="motw">
+          <img src="week3_logo_cache/4.png" alt="The Dylan Panthers">
+          <img src="week3_logo_cache/9.png" alt="Dirk's Squad">
+          <div>
+            <div class="label">MATCHUP OF THE WEEK · WEEK 4</div>
+            <h2>The Dylan Panthers <span>2–1</span> vs Dirk's Squad <span>3–0</span></h2>
+            <p>Dirk's Squad stayed unbeaten after Brock Purdy threw four touchdowns and Drake London caught nine passes for 194 yards. The Dylan Panthers, ranked first a week ago, lost by three with Michael Wilson's 25 points on the bench. New England Patriots and The Fins Maniacs, the other top-four pairing, meet as well.</p>
+          </div>
+        </section>
+        <ol class="ranks">
+          
+        <li class="rank-row">
+          <div class="rank-num">1</div>
+          <div class="move up">▲ 1</div>
+          <img class="logo" src="week3_logo_cache/10.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">New England Patriots</span>
+              <span class="prev">Last week 2</span>
+            </div>
+            <div class="keynote">3–0 · Salois & Yaggy 1st · 408 PF · W 133–108 vs The Mitchell Mishaps</div>
+            <p>Jaxon Smith-Njigba caught 10 passes for 128 yards and two touchdowns, and Bijan Robinson ran 29 times for 194 yards and two scores. Lamar Jackson added two touchdown passes. They remain unbeaten, alongside Dirk's Squad.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">2</div>
+          <div class="move up">▲ 2</div>
+          <img class="logo" src="week3_logo_cache/9.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Dirk's Squad</span>
+              <span class="prev">Last week 4</span>
+            </div>
+            <div class="keynote">3–0 · Holler 1st · 360 PF · W 139–130 vs The Fins Maniacs</div>
+            <p>Brock Purdy threw four touchdowns, finishing 15 of 27 for 297 yards, and Dirk's Squad stayed unbeaten. Drake London caught nine passes for 194 yards. CeeDee Lamb added seven catches for 112.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">3</div>
+          <div class="move down">▼ 2</div>
+          <img class="logo" src="week3_logo_cache/4.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Dylan Panthers</span>
+              <span class="prev">Last week 1</span>
+            </div>
+            <div class="keynote">2–1 · Holler 2nd · 431 PF · L 103–106 vs The Short Bus Crew</div>
+            <p>A week after five touchdowns, Josh Allen had two, and the league's highest-scoring roster lost by three. James Cook ran for 154 yards and a score. Michael Wilson's 25 points sat on the bench. Dylan spent $20 each on Meyers and the Ravens.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">4</div>
+          <div class="move down">▼ 1</div>
+          <img class="logo" src="week3_logo_cache/6.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Fins Maniacs</span>
+              <span class="prev">Last week 3</span>
+            </div>
+            <div class="keynote">2–1 · Salois & Yaggy 2nd · 372 PF · L 130–139 vs Dirk's Squad</div>
+            <p>Jahmyr Gibbs totaled 164 yards and three touchdowns, 99 rushing and 65 receiving, and it was not enough. The Fins Maniacs lost by nine to Dirk's Squad. Eighty-four points stayed on the bench.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">5</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week3_logo_cache/2.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Mitchell Mishaps</span>
+              <span class="prev">Last week 5</span>
+            </div>
+            <div class="keynote">1–2 · Salois & Yaggy 3rd · 364 PF · L 108–133 vs New England Patriots</div>
+            <p>Kenneth Walker III was the best of a flat afternoon, and a loss to New England Patriots did not knock The Mitchell Mishaps from fifth. The answer was still the week's largest bid, $32 on Keenan Allen.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">6</div>
+          <div class="move up">▲ 1</div>
+          <img class="logo" src="week3_logo_cache/3.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Mia Hamsters</span>
+              <span class="prev">Last week 7</span>
+            </div>
+            <div class="keynote">1–2 · Salois & Yaggy 4th · 339 PF · W 136–105 vs Omar Malik / Gooch Canal</div>
+            <p>The first win arrived with Joe Burrow throwing three touchdowns. Ja'Marr Chase caught nine passes for 98 yards and a score, Tee Higgins added one from 28 yards, and Christian McCaffrey ran one in. Harold Fannin Jr. scored twice.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">7</div>
+          <div class="move up">▲ 1</div>
+          <img class="logo" src="week3_logo_cache/7.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">The Short Bus Crew</span>
+              <span class="prev">Last week 8</span>
+            </div>
+            <div class="keynote">1–2 · Holler 4th · 301 PF · W 106–103 vs The Dylan Panthers</div>
+            <p>The first win came by three points against the team that had been No. 1. Derrick Henry scored twice on the ground, and Christian Watson caught seven passes for 96 yards and a touchdown. The Short Bus Crew is no longer winless.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">8</div>
+          <div class="move up">▲ 2</div>
+          <img class="logo" src="week3_logo_cache/1.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Halloween Greaseheads</span>
+              <span class="prev">Last week 10</span>
+            </div>
+            <div class="keynote">1–2 · Holler 5th · 294 PF · W 130–103 vs Team We Are Here</div>
+            <p>Sam's first win came with Tyler Shough throwing four touchdown passes, even in a Saints loss. Tee Higgins caught six passes for 90 yards and a score. Halloween Greaseheads were last in these rankings a week ago.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">9</div>
+          <div class="move down">▼ 3</div>
+          <img class="logo" src="week3_logo_cache/5.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Team We Are Here</span>
+              <span class="prev">Last week 6</span>
+            </div>
+            <div class="keynote">1–2 · Holler 3rd · 310 PF · L 103–130 vs Halloween Greaseheads</div>
+            <p>Davante Adams caught seven passes for 137 yards without a touchdown, and Team We Are Here still posted the week's low score. Garrett Wilson led the starters. On Wednesday both were dealt to Mia Hamsters.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">10</div>
+          <div class="move down">▼ 1</div>
+          <img class="logo" src="week3_logo_cache/8.png" alt="">
+          <div class="copy">
+            <div class="name-line">
+              <span class="name">Omar Malik / Gooch Canal</span>
+              <span class="prev">Last week 9</span>
+            </div>
+            <div class="keynote">0–3 · Salois & Yaggy 5th · 289 PF · L 105–136 vs Mia Hamsters</div>
+            <p>De'Von Achane tore his left ACL on his third carry, three rushes for 17 yards, and is out for the year. Brock Bowers caught 10 passes for 116 yards and a touchdown. Gooch Canal is 0–3 without the back the roster was built around.</p>
+          </div>
+        </li>
+        </ol>
+      </main>
+      <aside>
+        <section class='module'><h2>Salois & Yaggy Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>New England Patriots</span><span class='rec'>3–0</span><span class='pf'>408</span></li><li><span class='seed'>2</span><span class='tname'>The Fins Maniacs</span><span class='rec'>2–1</span><span class='pf'>372</span></li><li><span class='seed'>3</span><span class='tname'>The Mitchell Mishaps</span><span class='rec'>1–2</span><span class='pf'>364</span></li><li><span class='seed'>4</span><span class='tname'>Mia Hamsters</span><span class='rec'>1–2</span><span class='pf'>339</span></li><li><span class='seed'>5</span><span class='tname'>Omar Malik / Gooch Canal</span><span class='rec'>0–3</span><span class='pf'>289</span></li></ol></section><section class='module'><h2>Holler Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>Dirk's Squad</span><span class='rec'>3–0</span><span class='pf'>360</span></li><li><span class='seed'>2</span><span class='tname'>The Dylan Panthers</span><span class='rec'>2–1</span><span class='pf'>431</span></li><li><span class='seed'>3</span><span class='tname'>Team We Are Here</span><span class='rec'>1–2</span><span class='pf'>310</span></li><li><span class='seed'>4</span><span class='tname'>The Short Bus Crew</span><span class='rec'>1–2</span><span class='pf'>301</span></li><li><span class='seed'>5</span><span class='tname'>Halloween Greaseheads</span><span class='rec'>1–2</span><span class='pf'>294</span></li></ol></section>
+        <section class="module">
+          <h2>Top Waiver Bids</h2>
+          <div class="bid"><div class="amt">$32</div><div><strong>Keenan Allen, WR</strong><span>The Mitchell Mishaps. Next: New England Patriots $5.</span></div></div>
+          <div class="bid"><div class="amt">$25</div><div><strong>Ollie Gordon II, RB</strong><span>Team We Are Here. No other processed bid.</span></div></div>
+          <div class="bid"><div class="amt">$20</div><div><strong>Juwan Johnson, TE</strong><span>Mia Hamsters. Next: The Short Bus Crew $12.</span></div></div>
+          <div class="bid"><div class="amt">$20</div><div><strong>Ravens D/ST</strong><span>The Dylan Panthers. Next: Halloween Greaseheads $8.</span></div></div>
+          <div class="bid"><div class="amt">$20</div><div><strong>Jakobi Meyers, WR</strong><span>The Dylan Panthers. Next: Dirk's Squad $2.</span></div></div>
+        </section>
+        <section class="module trade">
+          <h2>Trades</h2>
+          <p>Team We Are Here sent Garrett Wilson and Isaiah Likely to Mia Hamsters for Juwan Johnson and Chuba Hubbard.</p>
+          <div class="meta">Processed by LM · Wed Sep 30</div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
