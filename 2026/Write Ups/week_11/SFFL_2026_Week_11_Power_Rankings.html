@@ -23,7 +23,7 @@
   h1 { font-size: 20pt; line-height: .9; letter-spacing: -.02em; color: #3ecf8e; }
   .dek-kicker { font-size: 8pt; font-weight: 700; letter-spacing: .08em; color: #9eb0a8; text-transform: uppercase; }
   .dek { margin-top: 1px; font-size: 9pt; line-height: 1.2; }
-  .layout { flex: 1; display: grid; grid-template-columns: 1fr 2.46in; gap: .09in; min-height: 0; }
+  .layout { flex: 1; display: grid; grid-template-columns: 1fr 2.85in; gap: .08in; min-height: 0; }
   main { display: flex; flex-direction: column; gap: .03in; min-height: 0; }
   .motw {
     display: grid; grid-template-columns: 1.28in 1.28in 1fr; gap: .05in; align-items: center;
@@ -69,7 +69,9 @@
   .bid .amt { font-size: 9pt; font-weight: 700; color: #F47321; line-height: 1; }
   .bid strong { display: block; font-size: 6.8pt; line-height: 1.05; color: #3ecf8e; }
   .bid span { display: block; font-size: 6.2pt; line-height: 1.12; color: #c5ced6; }
-  .trade { font-size: 6.6pt; line-height: 1.25; }
+  .trades { list-style: none; }
+  .trades li { font-size: 6.5pt; line-height: 1.18; margin-bottom: .03in; }
+  .trades li:last-child { margin-bottom: 0; }
   .week-slicer {
     position: sticky; top: 0; z-index: 20;
     display: flex; align-items: center; gap: 0.6rem;
@@ -118,7 +120,7 @@
 <div class="page">
   <header>
     <div><div class="kicker">SFFL WEEK 11</div><h1>POWER RANKINGS</h1></div>
-    <div><div class="dek-kicker">Week 11 / 2026</div><p class="dek">The Fins Maniacs post 157 and tie Mia Hamsters for first. Halloween Greaseheads visit in Week 12.</p></div>
+    <div><div class="dek-kicker">Week 11 / 2026</div><p class="dek">Mia Hamsters stay on top, tied with The Fins Maniacs. Halloween Greaseheads visit in Week 12.</p></div>
   </header>
   <div class="layout">
     <main>
@@ -134,24 +136,24 @@
       <ol class="ranks">
         <li class="rank-row">
           <div class="rank-num">1</div>
-          <div class="move up">▲ 1</div>
-          <img class="logo" src="week11_logo_cache/6.png" alt="">
-          <div class="copy">
-            <div class="name-line"><span class="name">The Fins Maniacs</span>
-              <span class="prev">Wk 10: 2</span></div>
-            <div class="keynote">7–4 · Salois & Yaggy 2nd · 1339 PF · W 157–94 vs The Mitchell Mishaps</div>
-            <p>CeeDee Lamb caught 11 passes for 132 yards and a score, and Jahmyr Gibbs ran for 98 yards with two touchdowns in the final six minutes. Bijan Robinson stayed on a bye. The Fins Maniacs put up 157, their season high, and he is next.</p>
-          </div>
-        </li>
-        <li class="rank-row">
-          <div class="rank-num">2</div>
-          <div class="move down">▼ 1</div>
+          <div class="move flat">—</div>
           <img class="logo" src="week11_logo_cache/3.png" alt="">
           <div class="copy">
             <div class="name-line"><span class="name">Mia Hamsters</span>
               <span class="prev">Wk 10: 1</span></div>
             <div class="keynote">7–4 · Salois & Yaggy 1st · 1440 PF · W 97–92 vs Dirk's Squad</div>
             <p>Ja'Marr Chase caught five passes for 31 yards. Joe Burrow threw for 300 and two scores, a long way from 409 and four. Mia Hamsters still escaped Dirk's Squad by five and stayed tied for first.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">2</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week11_logo_cache/6.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">The Fins Maniacs</span>
+              <span class="prev">Wk 10: 2</span></div>
+            <div class="keynote">7–4 · Salois & Yaggy 2nd · 1339 PF · W 157–94 vs The Mitchell Mishaps</div>
+            <p>CeeDee Lamb caught 11 passes for 132 yards and a score, and Jahmyr Gibbs ran for 98 yards with two touchdowns in the final six minutes. Bijan Robinson stayed on a bye. The Fins Maniacs put up 157, their season high, and he is next.</p>
           </div>
         </li>
         <li class="rank-row">
@@ -178,35 +180,35 @@
         </li>
         <li class="rank-row">
           <div class="rank-num">5</div>
-          <div class="move up">▲ 2</div>
-          <img class="logo" src="week11_logo_cache/1.png" alt="">
-          <div class="copy">
-            <div class="name-line"><span class="name">Halloween Greaseheads</span>
-              <span class="prev">Wk 10: 7</span></div>
-            <div class="keynote">5–6 · Holler 3rd · 1213 PF · W 113–99 vs Team We Are Here</div>
-            <p>Josh Allen threw for 304 yards, a touchdown and two interceptions, and Javonte Williams scored twice. Halloween Greaseheads beat Team We Are Here with Mike Evans and Nico Collins in a lineup that was new on Sunday. The moves were the win.</p>
-          </div>
-        </li>
-        <li class="rank-row">
-          <div class="rank-num">6</div>
-          <div class="move up">▲ 3</div>
+          <div class="move up">▲ 4</div>
           <img class="logo" src="week11_logo_cache/4.png" alt="">
           <div class="copy">
             <div class="name-line"><span class="name">The Dylan Panthers</span>
               <span class="prev">Wk 10: 9</span></div>
             <div class="keynote">5–5–1 · Holler 1st · 1298 PF · W 111–100 vs The Short Bus Crew</div>
-            <p>George Pickens caught seven passes for 102 yards and a touchdown as The Dylan Panthers took the Holler Division and the bye. Kenneth Walker III is out again with a groin strain, a third straight game. The spot is theirs to lose without him.</p>
+            <p>George Pickens caught seven passes for 102 yards and a touchdown in his first week with The Dylan Panthers, and Saquon Barkley came with him. Josh Allen went the other way. Kenneth Walker III is out again with a groin strain, a third straight game.</p>
           </div>
         </li>
         <li class="rank-row">
-          <div class="rank-num">7</div>
-          <div class="move down">▼ 3</div>
+          <div class="rank-num">6</div>
+          <div class="move down">▼ 2</div>
           <img class="logo" src="week11_logo_cache/5.png" alt="">
           <div class="copy">
             <div class="name-line"><span class="name">Team We Are Here</span>
               <span class="prev">Wk 10: 4</span></div>
             <div class="keynote">4–5–2 · Holler 4th · 1231 PF · L 99–113 vs Halloween Greaseheads</div>
-            <p>Chuba Hubbard rushed for 120 yards and two touchdowns, and Team We Are Here still lost to Halloween Greaseheads. The tie from two weeks ago did not turn into a run. One loss put the rankings climb in reverse.</p>
+            <p>Chuba Hubbard rushed for 120 yards and two touchdowns, and Team We Are Here still lost to Halloween Greaseheads. James Cook arrives from The Mitchell Mishaps. The tie from two weeks ago did not turn into a run.</p>
+          </div>
+        </li>
+        <li class="rank-row">
+          <div class="rank-num">7</div>
+          <div class="move flat">—</div>
+          <img class="logo" src="week11_logo_cache/1.png" alt="">
+          <div class="copy">
+            <div class="name-line"><span class="name">Halloween Greaseheads</span>
+              <span class="prev">Wk 10: 7</span></div>
+            <div class="keynote">5–6 · Holler 3rd · 1213 PF · W 113–99 vs Team We Are Here</div>
+            <p>Josh Allen threw for 304 yards, a touchdown and two interceptions, and Javonte Williams scored twice. Halloween Greaseheads beat Team We Are Here with Allen and Nico Collins starting after the deals that brought them in. The record is still 5-6.</p>
           </div>
         </li>
         <li class="rank-row">
@@ -217,7 +219,7 @@
             <div class="name-line"><span class="name">The Mitchell Mishaps</span>
               <span class="prev">Wk 10: 5</span></div>
             <div class="keynote">5–6 · Salois & Yaggy 5th · 1292 PF · L 94–157 vs The Fins Maniacs</div>
-            <p>The Mitchell Mishaps fell to 5-6 and the last playoff seed after losing to The Fins Maniacs by 63. Chris Olave and Tetairoa McMillan were the high points. The rest of the lineup never made it close.</p>
+            <p>The Mitchell Mishaps fell to 5-6 and the last playoff seed after losing to The Fins Maniacs by 63. Chris Olave and Tetairoa McMillan were the high points. James Cook and Trey McBride were dealt away after it.</p>
           </div>
         </li>
         <li class="rank-row">
@@ -239,14 +241,14 @@
             <div class="name-line"><span class="name">Dirk's Squad</span>
               <span class="prev">Wk 10: 10</span></div>
             <div class="keynote">4–7 · Holler 5th · 1112 PF · L 92–97 vs Mia Hamsters</div>
-            <p>Dirk's Squad lost a seventh straight game after a 4-0 start. Mia Hamsters won it by five, and the season has turned into a search for keepers.</p>
+            <p>Dirk's Squad lost a seventh straight game after a 4-0 start. Sending Nico Collins and Drake London to Halloween Greaseheads did not change it. Mia Hamsters won by five, and the year is a keeper search.</p>
           </div>
         </li></ol>
     </main>
     <aside>
       <section class='module'><h2>Salois & Yaggy Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>Mia Hamsters</span><span class='rec'>7–4</span><span class='pf'>1440</span></li><li><span class='seed'>2</span><span class='tname'>The Fins Maniacs</span><span class='rec'>7–4</span><span class='pf'>1339</span></li><li><span class='seed'>3</span><span class='tname'>New England Patriots</span><span class='rec'>6–5</span><span class='pf'>1308</span></li><li><span class='seed'>4</span><span class='tname'>Omar Malik / Gooch Canal</span><span class='rec'>5–5–1</span><span class='pf'>1305</span></li><li><span class='seed'>5</span><span class='tname'>The Mitchell Mishaps</span><span class='rec'>5–6</span><span class='pf'>1292</span></li></ol></section><section class='module'><h2>Holler Division</h2><ol class='standings'><li><span class='seed'>1</span><span class='tname'>The Dylan Panthers</span><span class='rec'>5–5–1</span><span class='pf'>1298</span></li><li><span class='seed'>2</span><span class='tname'>The Short Bus Crew</span><span class='rec'>5–6</span><span class='pf'>1224</span></li><li><span class='seed'>3</span><span class='tname'>Halloween Greaseheads</span><span class='rec'>5–6</span><span class='pf'>1213</span></li><li><span class='seed'>4</span><span class='tname'>Team We Are Here</span><span class='rec'>4–5–2</span><span class='pf'>1231</span></li><li><span class='seed'>5</span><span class='tname'>Dirk's Squad</span><span class='rec'>4–7</span><span class='pf'>1112</span></li></ol></section>
-      <section class='module'><h2>Top Waiver Bids</h2><div class='bid'><div class='amt'>$20</div><div><strong>Broncos D/ST</strong><span>Mia Hamsters. Omar Malik / Gooch Canal bid $15. Already gone.</span></div></div><div class='bid'><div class='amt'>$15</div><div><strong>Xavier Hutchinson</strong><span>Dirk's Squad. No other bid.</span></div></div><div class='bid'><div class='amt'>$11</div><div><strong>Chig Okonkwo</strong><span>Dirk's Squad. The Short Bus Crew bid $1. Already gone.</span></div></div><div class='bid'><div class='amt'>$8</div><div><strong>Bo Nix</strong><span>Halloween Greaseheads. Dropped later for Keenan Allen.</span></div></div></section>
-      <section class='module'><h2>Trade</h2><p class='trade'>The Fins Maniacs sent Justin Jefferson, D'Andre Swift and Tyler Allgeier to New England Patriots for Bijan Robinson, DK Metcalf and Emmett Johnson.</p></section>
+      <section class='module'><h2>Top Waiver Bids</h2><div class='bid'><div class='amt'>$20</div><div><strong>Broncos D/ST</strong><span>Mia Hamsters. Added. Omar Malik / Gooch Canal bid $15. Already gone.</span></div></div><div class='bid'><div class='amt'>$15</div><div><strong>Xavier Hutchinson</strong><span>Dirk's Squad. Added. Dropped Chris Godwin Jr.</span></div></div><div class='bid'><div class='amt'>$11</div><div><strong>Chig Okonkwo</strong><span>Dirk's Squad. Added. The Short Bus Crew bid $1. Already gone.</span></div></div><div class='bid'><div class='amt'>$8</div><div><strong>Bo Nix</strong><span>Halloween Greaseheads. Added. Dropped Kaleb Johnson.</span></div></div></section>
+      <section class='module'><h2>Trades</h2><ul class='trades'><li>The Fins Maniacs received Bijan Robinson, DK Metcalf and Emmett Johnson from New England Patriots for Justin Jefferson, D'Andre Swift and Tyler Allgeier.</li><li>The Dylan Panthers received George Pickens and Saquon Barkley from Halloween Greaseheads for Josh Allen, Emeka Egbuka and Quinshon Judkins.</li><li>Halloween Greaseheads received Nico Collins, Drake London and Kyle Monangai from Dirk's Squad for Tony Pollard and Matthew Golden.</li><li>Halloween Greaseheads received Trey McBride, Jadarian Price and Zach Charbonnet from The Mitchell Mishaps for Chase Brown and Sam LaPorta.</li><li>Team We Are Here received James Cook from The Mitchell Mishaps for Blake Corum and Parker Washington.</li></ul></section>
     </aside>
   </div>
 </div>
